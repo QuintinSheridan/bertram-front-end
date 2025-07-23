@@ -18,7 +18,7 @@ const LoginForm = () => {
       console.log('password: ', password)
       const res = await login(userName, password)
       const userId = res.data.userId
-      sessionStorage.setItem('loggedInUserId', userId);
+      sessionStorage.setItem('userId', userId);
       navigate('/')
      } catch (err) {
         alert("Invalid user name or password.  Please try again.")

@@ -5,7 +5,7 @@ const HomePage = () => {
     const [loggedInUserId, setloggedInUserId] = useState('')
 
     useEffect(() => {
-        const userId = sessionStorage.getItem('loggedInUserId');
+        const userId = sessionStorage.getItem('userId');
         console.log('session user id: ', userId)
         if(userId) {
             setloggedInUserId(userId)
