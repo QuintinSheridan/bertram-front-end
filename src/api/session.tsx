@@ -1,11 +1,11 @@
 
 import axios from 'axios';
 
-interface Vote {
+export interface Vote {
     userId: number
     sessionId: number
     amount: number
-    method: string
+    vote: string
 }
 
 export const addUser = async (userId: number, sessionId: number) => {
@@ -13,9 +13,9 @@ export const addUser = async (userId: number, sessionId: number) => {
     return await axios.post('http://localhost:3000/session/addUser', {userId, sessionId})
 }
 
-export const vote = async ({userId, sessionId, amount, method}: Vote ) => {
+export const vote = async ({userId, sessionId, amount, vote}: Vote ) => {
     console.log("posting vote")
-    return await axios.post('http://localhost:3000/session/vote', {userId, sessionId, amount, method})
+    return await axios.post('http://localhost:3000/session/vote', {userId, sessionId, amount, vote})
 }
 
 export const getVoteStatus = async (userId: number, sessionId: number ) => {

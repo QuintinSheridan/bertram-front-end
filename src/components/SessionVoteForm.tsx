@@ -1,15 +1,18 @@
 import { useState } from 'react';
-import { vote } from '../api/session';
-import type { FormEvent } from 'react';
+import { vote} from '../api/session';
+import type { Vote} from '../api/session';
+import type { FormEvent, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
+interface SessionVoteFormProps {
+  sessionId: number
+}
 
-
-const SessionVoteForm = ({sessionId}: number) => {
+const SessionVoteForm = ({sessionId}: SessionVoteFormProps) => {
   const [amount, setAmount] = useState('')
-  const [method, setMethod] = useState('')
-  const [selectedOption, setSelectedOption] = useState(null)
+  const [voteChoice, setVoteChoice] = useState('')
+  const [selectedOption, setSelectedOption] = useState('')
 
   console.log("sessionId: ", sessionId)
 
@@ -20,43 +23,43 @@ const SessionVoteForm = ({sessionId}: number) => {
     { id: 'squareUp', label: 'Square Up' },
   ];
 
-  const handleSelection = (e) => {
+  const handleSelection = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedOption(e.target.value);
-    setMethod(e.target.value)
+    setVoteChoice(e.target.value)
   };
 
   const buttonDisabled = () => {
     console.log('derp')
-    const disabled = (amount && method) ? false : true
+    const disabled = (amount && voteChoice) ? false : true
     console.log('disabled: ', disabled)
     return disabled
   }
 
-//   TODO implement modals to notify a user that inputs need to be changed
-
-     const userId = localStorage.getItem('userId')
-//   const sessionId =
-
-//   const vote = {
-//     userId,
-//     sessionId,
-//     amount,
-//     method
-//   }
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     try{
+      const userId = await sessionStorage.getItem('userId')
+      console.log("wtf: userId: ", userId)
+      const voteBody = {
+        userId,
+        sessionId,
+        amount: parseFloat(amount),
+        vote: voteChoice
+      }
+
       console.log("vote submission")
       console.log('amount: ', amount)
-      console.log('method: ', method)
+      console.log('vote: ', voteChoice)
       console.log('userId: ', userId)
       console.log('sessionId: ', sessionId)
+      const res = await vote(voteBody)
+      console.log('res: ', res)
 
      } catch (err) {
       alert("Error: Invalid session id")
-      throw new Error(err)
+      throw new Error("Invalid session id")
     }
   }
 

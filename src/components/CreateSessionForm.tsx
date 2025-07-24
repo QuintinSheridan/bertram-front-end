@@ -26,7 +26,7 @@ const CreateSessionForm = () => {
   return (
     <div className='container m-8 flex flex-col'>
       <div className='m-auto'>
-        <h1 className='m-4 text-3xl'>Register</h1>
+        <h1 className='m-4 text-3xl'>Create Session</h1>
       </div>
 
       <form onSubmit={handleSubmit} method="post">

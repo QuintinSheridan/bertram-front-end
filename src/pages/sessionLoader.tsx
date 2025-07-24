@@ -14,15 +14,12 @@ const sessionLoader = async ({params}) => {
     const userId = sessionStorage.getItem('userId')
     console.log('userId: ', userId)
 
-    const voteStatus =  result ? true : await getVoteStatus(userId, id)
-    console.log('voteStatus: ', voteStatus)
-
-
+    const vote = await getVoteStatus(userId, id)
 
     return {
         id,
-        result: false,
-        voteStatus: false
+        result: result.data,
+        voteStatus: vote.data
     }
 }
 
