@@ -1,17 +1,21 @@
+import { useEffect, useState, useRef } from "react";
 import SessionVoteForm from "../components/SessionVoteForm"
 import { useLoaderData } from 'react-router-dom';
+import { getSessionResult } from "../api/session";
 
 const SessionPage = () => {
     const sessionData = useLoaderData()
     const {voteStatus, result, id} = sessionData
     console.log('sessionData: ', sessionData)
     console.log("voteStatus: ", voteStatus)
+    // const [currentResult, setCurrentResult] = useState(result)
+    const resultRef = useRef(result)
 
     const renderResult = () => {
         return (
             <div className="flex flex-col container w-1/1 content-center" >
                 <h1 className="text-3xl bold m-auto">Result</h1>
-                <h2 className="text-2xl bold m-auto">Pay up {result.userName}. ${result.amount}</h2>
+                <h2 className="text-2xl bold m-auto">Pay up {resultRef.current.userName}. ${resultRef.current.amount}</h2>
             </div>
         )
     }
@@ -32,22 +36,34 @@ const SessionPage = () => {
     const renderForm = () => {
         return (
             <div>
-                <SessionVoteForm sessionId={sessionData.id}/>
+                <SessionVoteForm sessionId={parseInt(sessionData.id)}/>
             </div>
         )
     }
 
 
     const renderContent = () => {
-        if(result?.userId) {
-            return renderResult(result)
+        if(resultRef.current?.userId) {
+            return renderResult(resultRef.current)
         } else if(voteStatus?.vote) {
-            return renderVote(voteStatus)
+            return renderVote()
         } else {
             return renderForm()
         }
     }
 
+
+    // useEffect(()=> {
+    //     const interval = setInterval(async () => {
+    //         const fetchedResult = await getSessionResult(id)
+    //         console.log('fetched result: ', fetchedResult)
+    //         console.log('resultRef.current: ', resultRef.current)
+    //         if(fetchedResult!=resultRef.current){
+    //             resultRef.current = fetchedResult
+    //         }
+    //       },5*1000);
+    //       return () => clearInterval(interval);
+    // })
 
     return (
         <div className="flex flex-col content-center">

@@ -13,6 +13,7 @@ const SessionVoteForm = ({sessionId}: SessionVoteFormProps) => {
   const [amount, setAmount] = useState('')
   const [voteChoice, setVoteChoice] = useState('')
   const [selectedOption, setSelectedOption] = useState('')
+  const navigate = useNavigate()
 
   console.log("sessionId: ", sessionId)
 
@@ -37,10 +38,10 @@ const SessionVoteForm = ({sessionId}: SessionVoteFormProps) => {
 
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+    // e.preventDefault()
 
     try{
-      const userId = await sessionStorage.getItem('userId')
+      const userId = await parseInt(sessionStorage.getItem('userId') as string)
       console.log("wtf: userId: ", userId)
       const voteBody = {
         userId,
@@ -56,10 +57,11 @@ const SessionVoteForm = ({sessionId}: SessionVoteFormProps) => {
       console.log('sessionId: ', sessionId)
       const res = await vote(voteBody)
       console.log('res: ', res)
+      window.location.reload()
 
      } catch (err) {
-      alert("Error: Invalid session id")
-      throw new Error("Invalid session id")
+      alert("Error: Error casting vote.  Please try again.")
+      throw new Error("Error: Error casting vote")
     }
   }
 

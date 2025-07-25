@@ -11,7 +11,7 @@ const sessionLoader = async ({params}) => {
 
 
     // // check to see if a user has voted, if they have, then waiting for results will be displayed
-    const userId = sessionStorage.getItem('userId')
+    const userId = parseInt(sessionStorage.getItem('userId') as string)
     console.log('userId: ', userId)
 
     const vote = await getVoteStatus(userId, id)
