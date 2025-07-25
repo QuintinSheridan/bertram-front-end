@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { vote} from '../api/session';
-import type { Vote} from '../api/session';
 import type { FormEvent, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 

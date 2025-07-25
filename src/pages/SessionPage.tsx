@@ -6,10 +6,7 @@ import { getSessionResult } from "../api/session";
 const SessionPage = () => {
     const sessionData = useLoaderData()
     const {voteStatus, result, id} = sessionData
-    console.log('sessionData: ', sessionData)
-    console.log("voteStatus: ", voteStatus)
     const [currentResult, setCurrentResult] = useState(result)
-    // const resultRef = useRef(result)
 
     const renderResult = () => {
         return (
@@ -56,8 +53,6 @@ const SessionPage = () => {
     useEffect(()=> {
         const interval = setInterval(async () => {
             const fetchedResult = await getSessionResult(id)
-            console.log('fetched result: ', fetchedResult)
-            console.log('currentResult: ', currentResult)
             if(fetchedResult.data!=currentResult){
                 setCurrentResult(fetchedResult.data)
             }

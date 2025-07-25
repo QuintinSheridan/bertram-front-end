@@ -7,13 +7,9 @@ const sessionLoader = async ({params}) => {
 
     // // try to get the session result, if exists result will be displayed
     const result =  await getSessionResult(id)
-    console.log('session result: ', result)
-
 
     // // check to see if a user has voted, if they have, then waiting for results will be displayed
     const userId = parseInt(sessionStorage.getItem('userId') as string)
-    console.log('userId: ', userId)
-
     const vote = await getVoteStatus(userId, id)
 
     return {

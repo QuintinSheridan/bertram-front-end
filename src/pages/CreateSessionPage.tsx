@@ -1,7 +1,4 @@
-import { createSession } from "react-router-dom"
 import CreateSessionForm from "../components/CreateSessionForm"
-
-
 
 const CreateSessionPage = () => {
     return (

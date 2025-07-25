@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { createSession } from '../api/createSession';
 import type { FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 
