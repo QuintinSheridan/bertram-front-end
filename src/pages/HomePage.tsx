@@ -12,6 +12,7 @@ const HomePage = () => {
         }
     })
 
+
     return (
         <div className="w-full content-center flex flex-col">
             <h1 className="text-4xl m-auto mt-10 pb-5">Coffee Payer</h1>
