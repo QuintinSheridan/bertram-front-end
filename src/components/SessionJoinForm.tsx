@@ -33,7 +33,7 @@ const JoinSessionForm = () => {
           <input type="sessionId" className='border rounded-md p-2' value={sessionId} onChange={(e) => setSessionId(e.target.value)} placeholder="Session ID" />
           <button type="submit" className='bg-green-300 m-auto p-2 border rounded-md'>Join Session</button>
           <p>
-            Enter a session id for a session greated by your party to join your group and decide who will pay for coffee!
+            Enter a session id for a session created by your party to join your group and decide who will pay for coffee!
           </p>
         </div>
       </form>

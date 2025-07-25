@@ -8,14 +8,14 @@ const SessionPage = () => {
     const {voteStatus, result, id} = sessionData
     console.log('sessionData: ', sessionData)
     console.log("voteStatus: ", voteStatus)
-    // const [currentResult, setCurrentResult] = useState(result)
-    const resultRef = useRef(result)
+    const [currentResult, setCurrentResult] = useState(result)
+    // const resultRef = useRef(result)
 
     const renderResult = () => {
         return (
-            <div className="flex flex-col container w-1/1 content-center" >
-                <h1 className="text-3xl bold m-auto">Result</h1>
-                <h2 className="text-2xl bold m-auto">Pay up {resultRef.current.userName}. ${resultRef.current.amount}</h2>
+            <div className="flex flex-col w-1/1 content-center mt-10 gap-5" >
+                <h1 className="text-3xl bold m-auto"><u>Result</u></h1>
+                <h2 className="text-2xl bold m-auto">Pay up {currentResult.userName}. ${currentResult.amount}</h2>
             </div>
         )
     }
@@ -43,8 +43,8 @@ const SessionPage = () => {
 
 
     const renderContent = () => {
-        if(resultRef.current?.userId) {
-            return renderResult(resultRef.current)
+        if(currentResult?.userId) {
+            return renderResult()
         } else if(voteStatus?.vote) {
             return renderVote()
         } else {
@@ -53,17 +53,17 @@ const SessionPage = () => {
     }
 
 
-    // useEffect(()=> {
-    //     const interval = setInterval(async () => {
-    //         const fetchedResult = await getSessionResult(id)
-    //         console.log('fetched result: ', fetchedResult)
-    //         console.log('resultRef.current: ', resultRef.current)
-    //         if(fetchedResult!=resultRef.current){
-    //             resultRef.current = fetchedResult
-    //         }
-    //       },5*1000);
-    //       return () => clearInterval(interval);
-    // })
+    useEffect(()=> {
+        const interval = setInterval(async () => {
+            const fetchedResult = await getSessionResult(id)
+            console.log('fetched result: ', fetchedResult)
+            console.log('currentResult: ', currentResult)
+            if(fetchedResult.data!=currentResult){
+                setCurrentResult(fetchedResult.data)
+            }
+          },5*1000);
+          return () => clearInterval(interval);
+    })
 
     return (
         <div className="flex flex-col content-center">
