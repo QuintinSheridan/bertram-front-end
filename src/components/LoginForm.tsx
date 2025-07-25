@@ -27,13 +27,13 @@ const LoginForm = () => {
   }
 
   return (
-    <div className='container m-8 flex flex-col'>
+    <div className='m-8 flex flex-col'>
       <div className='m-auto'>
         <h1 className='m-4 text-3xl'>Log In</h1>
       </div>
 
       <form onSubmit={handleSubmit} method="post">
-        <div className='flex flex-col content-center gap-4 w-1/2 m-auto'>
+        <div className='flex flex-col content-center gap-4 w-1/3 m-auto'>
           <input type="userName" className='border rounded-md p-2' value={userName} onChange={(e) => setUserName(e.target.value)} placeholder="Username" />
           <input type="password" className='border rounded-md p-2' value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
 

@@ -4,7 +4,7 @@ import JoinSessionForm from "../components/SessionJoinForm"
 
 const JoinSessionPage = () => {
     return (
-        <div className="Container">
+        <div className="w-full">
           <JoinSessionForm />
         </div>
     )

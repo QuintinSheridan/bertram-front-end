@@ -35,6 +35,10 @@ const CreateSessionForm = () => {
           <button type="submit" className='bg-green-300 m-auto p-2 border rounded-md'>Create Session</button>
         </div>
       </form>
+
+      <p className="mt-10 w-1/2 m-auto">Click the "Create Session" link to create a new session.
+              Session numbers can then be shared with the group to cast votes and determine who will pay.
+          </p>
     </div>
   );
 };

@@ -21,7 +21,7 @@ const JoinSessionForm = () => {
   }
 
   return (
-    <div className='container m-8 flex flex-col'>
+    <div className='m-8 flex flex-col'>
       <div className='m-auto'>
         <h1 className='m-4 text-3xl'>
             Join Session

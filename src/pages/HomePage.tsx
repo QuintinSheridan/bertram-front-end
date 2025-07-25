@@ -13,24 +13,23 @@ const HomePage = () => {
     })
 
     return (
-        <div className="container w-1/1 content-center flex flex-col flex-grow">
-            <h1 className="text-3xl m-auto pb-5">Home</h1>
+        <div className="w-full content-center flex flex-col">
+            <h1 className="text-4xl m-auto mt-10 pb-5">Coffee Payer</h1>
             <div className="flex flew-col gap-4">
-                <div className="flex flex-col m-auto text-center text-blue-500">
+                <div className="flex flex-col m-auto text-2xl text-center text-blue-500">
                     {!loggedInUserId &&
-                        <div className="flex flex-col">
+                        <div className="flex flex-col gap-2">
                             <Link to="/register">Register</Link>
                             <Link to="/login">Log In</Link>
                         </div>
                     }
                     {loggedInUserId &&
-                        <div className="flex flex-col">
+                        <div className="flex flex-col gap-2">
                             <Link to="/session/create">Create a session</Link>
                             <Link to="/session/join">Join a session</Link>
                         </div>
                     }
                 </div>
-
             </div>
         </div>
     )
